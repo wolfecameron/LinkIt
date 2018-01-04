@@ -1,0 +1,25 @@
+{% extends "general.html" %}
+
+{% block content %}
+
+
+
+<h3 class="text">Here is your link:</h3>
+<textarea class="url-text" cols="60%" rows="5%">{{link}}</textarea>
+
+<h5 class="text">If your link is not correct, <a href="/submit" style="color:yellow;">click here</a> to try again!</h5>
+<h5 class="text"><em>OR</em> use the above text box to edit the link before copying it!</h5>
+<hr />
+<h3 class="text">Tips for<strong> Getting a more accurate link from your picture:</strong></h3>
+	<div class="text">
+		<ul>
+			<li>Make sure your picture is clear and not blurry.</li>
+			<li>Try to position the link near the middle of the picture.</li>
+			<li>Make sure the lighting in the photo is sufficient.</li>
+			<li>Keep bright or patterned objects out of the backgorund of the photo.</li>
+			<li>If your link is on two separate lines of text, LinkIt may have trouble finding some of the link.</li>
+			<li>LinkIt may return multiple "links" that it has found from your picture, just copy the one that you need in the text box!</li>
+			<li>LinkIt technology does not work well when taking a photo of a computer screen, try a screenshot instead (this is more clear)!</li>
+		</ul>
+	</div>
+{% endblock %}

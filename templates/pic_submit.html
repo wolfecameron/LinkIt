@@ -1,0 +1,15 @@
+{% extends "general.html" %}
+{% block content %}
+
+<div class="note">
+	<form method = "post" action="/upload_photo" enctype="multipart/form-data">
+	 <input type="file" name="file" class="text">
+	 <input type="submit" name="submit_image" value="Upload">
+	</form>
+</div>
+
+<div class="text fancy note">Click "Browse" to take a photo, and then hit "Upload" to return your link!</div>
+
+<h3 class = "error">{{error}}</h3>
+
+{% endblock %}

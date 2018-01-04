@@ -1,0 +1,90 @@
+/* styling for LinkIt! */
+body {
+	background: #141E30;
+	}
+	
+
+h1 {
+	
+	color: orange; 
+	font-weight: bold;
+	font-family: Georgia;
+	text-align: center;
+	}
+
+hr {
+	opacity: .5;
+	color: orange;
+}
+
+textarea {
+	width:50%;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+.note{
+	font-weight: bold;
+	margin: 20px;
+	margin-left: 5px;
+}
+
+.fancy{
+	font-style: italic;
+	font-family:Georgia;
+	color: #FFF;
+	opacity: .9;
+}
+
+.url-text {
+	
+}
+
+.contact{
+
+}
+
+.email {
+	height:20px;
+	width:30px;
+}
+
+.text {
+	color: orange;
+	}
+
+
+.home_link {
+	height: 30px;
+	width: 30px;
+	}
+
+
+.padded {
+	padding-left: 30px;
+	padding-right: 30px;
+	}
+
+
+.middle {
+	text-align: center;
+		}
+
+.bot_photo {
+	
+	background-image: url("./Images/home_image.jpg");
+	position: relative;
+	left: 25%;
+	background-position: center;
+	background-size: cover;
+  	text-align: center;
+  	height: 300px;
+  	width: 50%;
+  }
+
+ .link:hover {
+ 	color: #FFF;
+ }

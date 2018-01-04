@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<!-- Contains general structure of page, all html inherits from this file -->
+
+<html>
+<head>
+	<title>LinkIt!</title>
+	<meta charset = "utf-8"/>
+	<link rel="stylesheet" type="text/CSS" href="{{ url_for('static', filename='style.css') }}" >
+	
+</head>
+
+<body>
+	<h1> Welcome to LinkIt! </h1>
+	<div class="middle">
+		<a href="/"><img class="home_link" src="./static/Images/home_link1.png"></a>
+	</div>
+
+	
+		{% block content %}{% endblock %}
+
+	<!-- adds background photo to general template -->
+	
+	<hr />
+	<br />
+	<div class="bot_photo"></div>	
+<br />
+<hr />
+
+<div class="text middle contact">
+	<h3>Contact Us!</h3>
+	<a href="mailto:wolfe.cameron@utexas.edu"><img class = "email" src="./static/Images/email.jpeg"></a>
+	
+
+</div>
+</div>
+</body>
+</html>
+

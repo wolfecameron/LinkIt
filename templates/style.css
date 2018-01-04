@@ -1,0 +1,37 @@
+/* styling for LinkIt! Page */
+
+body {
+	background: #141E30;
+	}
+	
+
+h1 {
+	color: orange; 
+	font-weight: bold;
+	font-family: italic;
+	text-align: center;
+	}
+
+
+.text {
+	color: orange;
+	}
+
+
+.home_link {
+	text-transform: uppercase;
+	}
+
+
+.padded {
+	padding-left: 25px;
+	padding-right: 25px;
+	}
+
+
+.middle {
+	text-align: center;
+		}
+
+		
+
