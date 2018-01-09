@@ -21,7 +21,7 @@ UPLOAD_FOLDER = '/UPLOADS'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
-def home():
+def index():
 	return render_template('index.html')
 
 @app.route('/about')
