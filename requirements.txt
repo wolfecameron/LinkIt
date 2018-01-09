@@ -90,6 +90,7 @@ greenlet==0.4.12
 grin==1.2.1
 grpc-google-iam-v1==0.11.4
 grpcio==1.7.0
+gunicorn==19.7.1
 h5py==2.7.0
 heapdict==1.0.0
 heroku==0.1.4
