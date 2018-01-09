@@ -1,4 +1,3 @@
-'''
 from flask import Flask
 from flask import render_template, request, redirect, url_for, flash
 import time
@@ -72,15 +71,5 @@ if __name__ == "__main__":
 	
 	app.run()
 
-'''
-from flask import Flask
 
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-	return 'OK'
-
-if __name__== "__main__":
-	app.run()
 
