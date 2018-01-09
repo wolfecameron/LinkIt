@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import render_template, request, redirect, url_for, flash
 import time
-from flask_sqlalchemy import SQLAlchemy
 from helpers import launch_sequence, allowed_file, read_photo, find_url_period, elim_nonurl
 import os
 import numpy as np

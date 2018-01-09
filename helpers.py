@@ -158,4 +158,4 @@ list3 = elim_nonurl(list2)
 
 print((list3))
 '''
-print(read_photo(np.array(Image.open('/home/wolfecameron/Desktop/Projects/linkit_im/test14.JPG'))))
+#print(read_photo(np.array(Image.open('/home/wolfecameron/Desktop/Projects/linkit_im/test14.JPG'))))
