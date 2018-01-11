@@ -1,0 +1,10 @@
+click==6.7
+Flask==0.12.2
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+numpy==1.14.0
+opencv-python==3.4.0.12
+Pillow==5.0.0
+pytesseract==0.1.7
+Werkzeug==0.14.1
