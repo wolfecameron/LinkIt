@@ -1,24 +1,20 @@
 #this file contains all helper functions that are used for the website separately
-import pytesseract
-from PIL import Image
-from pytesseract import *
-import cv2
+from pytesseract import image_to_string
+from PIL import Image, ImageFilter
 import numpy as np
 
 
 #filters image to separate foreground from background and returns text from image
 def read_photo(image):
-	#loads image and converts it to grayscale
-	#im = np.array(image)
-	gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-	#gray = cv2.bitwise_not(gray)
+	#PIL size returns (width, height) of image in tuple
+	width = image.size[0]
+	height = image.size[1]
 	
-	#preprocessing image: uses thresholding to separate foreground from background while reading image text
-	gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
-	#gray = cv2.medianBlur(gray, 3)
-
-	new_im = Image.fromarray(gray)
-	text = pytesseract.image_to_string(new_im)
+	#enlarges image to make OCR more accurate
+	image = image.resize((width*4,height*4))
+	
+	#performs OCR on picture, returns all text found on photo
+	text = image_to_string(image)
 	
 	return parse_lines(text)
 
@@ -144,18 +140,4 @@ def find_url_period(text):
 	URL = URL[:runner]
 	return URL
 
-'''
-
-list1 = read_photo()
-
-#x = elim_nonurl(list1)
-
-list2 = []
-for z in list1:
-	list2.append(find_url_period(z))
-
-list3 = elim_nonurl(list2)
-
-print((list3))
-'''
-#print(read_photo(np.array(Image.open('/home/wolfecameron/Desktop/Projects/linkit_im/test14.JPG'))))
+#print read_photo(Image.open('/home/wolfecameron/Desktop/Projects/linkit_im/test7.PNG'))

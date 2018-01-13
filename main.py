@@ -1,10 +1,5 @@
-from flask import Flask
-from flask import render_template, request, redirect, url_for, flash
-import time
-import pytesseract
+from flask import Flask, render_template, request, redirect, url_for, flash
 from PIL import Image
-from pytesseract import *
-import cv2
 import numpy as np
 import os
 from helpers import read_photo, allowed_file, elim_nonurl, launch_sequence, parse_lines, find_url_period
@@ -44,6 +39,7 @@ def submit():
 
 @app.route('/upload_photo', methods = ['POST','GET'])
 def upload_photo():
+	
 	#only runs if something is being posted
 	if request.method == 'POST':
 		if 'file' not in request.files:
@@ -53,12 +49,14 @@ def upload_photo():
 		
 		if file and allowed_file(file.filename, EXTENSIONS):
 			img = Image.open(file)
-			img = np.array(img)
+			
 			#performs parsing algorithm from helpers.py on picture to identify cadidate URLs
+			
 			textList = read_photo(img)
 			parsed = []
 			for x in textList:
 				parsed.append(find_url_period(x))
+			
 			finalString = elim_nonurl(parsed)
 			
 
@@ -66,7 +64,6 @@ def upload_photo():
 	else:
 		
 		return render_template('pic_submit.html', error = "ERROR: No File, or an unsecure file, was submitted.")
-
 	return render_template("pic_submit.html")
 
 
@@ -82,12 +79,12 @@ def upload_photo():
 
 
 if __name__ == "__main__":
-	
+	'''
 	if(launch):
 		#makes a cool little launch sequence in the terminal for extra suspense 
 		launch_sequence()
 		launch = False #makes sure launching sequence doesn't keep running
-	
+	'''
 	app.run()
 
 

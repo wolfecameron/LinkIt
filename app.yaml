@@ -1,9 +1,6 @@
-runtime: python27
-api_version: 1
-threadsafe: true
+runtime: python-compat
+env: flex
+entrypoint: gunicorn -b :$PORT main:app
 
-handlers:
-- url: /static
-  static_dir: static
-- url: /.*
-  script: main.app
+runtime_config:
+    python_version: 3
