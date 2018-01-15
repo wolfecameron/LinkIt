@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from PIL import Image
-import numpy as np
 import os
 from helpers import read_photo, allowed_file, elim_nonurl, launch_sequence, parse_lines, find_url_period
 

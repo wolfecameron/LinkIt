@@ -1,7 +1,6 @@
 #this file contains all helper functions that are used for the website separately
 from pytesseract import image_to_string
 from PIL import Image, ImageFilter
-import numpy as np
 
 
 #filters image to separate foreground from background and returns text from image
