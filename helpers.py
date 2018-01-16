@@ -21,9 +21,11 @@ def read_photo(image):
 #file name should be a string input
 #i.e. file.filename
 #also submit allowed file extensions
+'''
 def allowed_file(filename, allowed_ext):
 	#returns true if file name has '.' and an allowed extension
 	return '.' in filename and filename.rsplit('.',1)[1].lower() in allowed_ext
+'''
 
 #takes list of URLs from find_url_tmp and eliminates anything that cannot be a URL
 def elim_nonurl(cand_list):
