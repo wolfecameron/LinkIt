@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from PIL import Image
 from helpers import read_photo, elim_nonurl, launch_sequence, parse_lines, find_url_period
+from google.cloud import vision
+from google.cloud.vision import types
 
 
 
@@ -40,21 +41,25 @@ def upload_photo():
 	if request.method == 'POST':
 		if 'file' not in request.files:
 			return render_template('pic_submit.html', error = "ERROR: No File, or an unsecure file, was submitted.")
-
+		
+		vision_client = vision.Client()
 		file = request.files['file']
+		
 
 		
 		if not(file==None):
 			finalString = ""
-			with Image.open(file) as img:
-				#performs parsing algorithm from helpers.py on picture to identify cadidate URLs
-				#Image file is automatically closed after handling
-				textList = read_photo(img)
-				parsed = []
-				for x in textList:
-					parsed.append(find_url_period(x))
+			#performs parsing algorithm from helpers.py on picture to identify cadidate URLs
+			#Image file is automatically closed after handling
+			content  = file.read()
+			image = vision_client.image(content=content)
+			ocr = image.detect_text()
+			textList = read_photo(ocr)
+			parsed = []
+			for x in textList:
+				parsed.append(find_url_period(x))
 
-				finalString = elim_nonurl(parsed)
+			finalString = elim_nonurl(parsed)
 				
 
 			return render_template('display_link.html', link=finalString)
@@ -67,6 +72,13 @@ def upload_photo():
 
 
 
+@app.errorhandler(500)
+def server_error(e):
+    logging.exception('An error occurred during a request.')
+    return """
+    An internal error occurred: <pre>{}</pre>
+    See logs for full stacktrace.
+    """.format(e), 500
 
 
 

@@ -1,21 +1,11 @@
 #this file contains all helper functions that are used for the website separately
-from pytesseract import image_to_string
-from PIL import Image, ImageFilter
 
 
 #filters image to separate foreground from background and returns text from image
-def read_photo(image):
-	#PIL size returns (width, height) of image in tuple
-	width = image.size[0]
-	height = image.size[1]
+def read_photo(ocr_text):
 	
-	#enlarges image to make OCR more accurate
-	image = image.resize((width*4,height*4))
 	
-	#performs OCR on picture, returns all text found on photo
-	text = image_to_string(image)
-	
-	return parse_lines(text)
+	return parse_lines(ocr_text)
 
 
 #file name should be a string input
