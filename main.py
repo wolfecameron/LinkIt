@@ -39,7 +39,7 @@ def upload_photo():
 	#only runs if something is being posted
 	if request.method == 'POST':
 		if 'file' not in request.files:
-			return redirect(request.url)
+			return render_template('pic_submit.html', error = "ERROR: No File, or an unsecure file, was submitted.")
 
 		file = request.files['file']
 
