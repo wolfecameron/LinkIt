@@ -1,12 +1,12 @@
 #this file contains all helper functions that are used for the website separately
 
 
+#this function is not needed with Google cloud vision because the API already has this functionality
 #filters image to separate foreground from background and returns text from image
 def read_photo(ocr_text):
 	
 	
-	return parse_lines(ocr_text)
-
+	return ocr_text
 
 #file name should be a string input
 #i.e. file.filename
@@ -23,6 +23,10 @@ def elim_nonurl(cand_list):
 	for x in cand_list:
 		good_url = True
 		if(len(x) < 5):
+			good_url = False
+		elif('.' not in x):
+			good_url = False
+		elif('\\' in x):
 			good_url = False
 		elif(' ' in x):
 			good_url = False

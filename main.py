@@ -34,7 +34,7 @@ def submit():
 	return render_template("pic_submit.html")
 
 
-@app.route('/upload_photo', methods = ['POST'])
+@app.route('/upload_photo', methods = ['POST','GET'])
 def upload_photo():
 	
 	#only runs if something is being posted
@@ -42,27 +42,67 @@ def upload_photo():
 		if 'file' not in request.files:
 			return render_template('pic_submit.html', error = "ERROR: No File, or an unsecure file, was submitted.")
 		
-		vision_client = vision.Client()
+		vision_client = vision.ImageAnnotatorClient()
 		file = request.files['file']
+
+		content = file.read()
+		'''
+    	with open("photo_post_read.jpg", "wb") as new_image:
+        	new_image.write(content)
+		'''
+		#3image = vision_client.image(content=content)
+		#ocr = image.detect_text()
+		'''
+		#opens/closes photo and reads data from the upload to be input into cloud vision API
+		with io.open(file, 'rb') as image_file:
+			content = image_file.read()
+		'''
 		
+		
+		#performs parsing algorithm from helpers.py on picture to identify cadidate URLs
+		#Image file is automatically closed after handling
+		
+		image = types.Image(content=content)
+		ocr = vision_client.text_detection(image=image)
+		text = ocr.text_annotations
+		text_list = str(text[0])
+		text_list = text_list.split()
+		check = 0
+
+		extracted_data = []
+
+		for x in text_list:
+			if('description' in x and check == 0):
+				check += 1
+			elif('bounding_poly' in x and check == 1):
+				check += 1
+
+			if(check == 1):
+				extracted_data.append(x)
+			if(check == 2):
+				break
+
+		candidate_URLs = []
+		for text in extracted_data:
+			candidate_URLs.append(find_url_period(text))
+
+
+		finalString = elim_nonurl(candidate_URLs)	
+			
 
 		
-		if not(file==None):
-			finalString = ""
-			#performs parsing algorithm from helpers.py on picture to identify cadidate URLs
-			#Image file is automatically closed after handling
-			content  = file.read()
-			image = vision_client.image(content=content)
-			ocr = image.detect_text()
-			textList = read_photo(ocr)
-			parsed = []
-			for x in textList:
-				parsed.append(find_url_period(x))
+		'''
+		textList = read_photo(ocr)
+		parsed = []
+		for x in textList:
+			parsed.append(find_url_period(x))
 
-			finalString = elim_nonurl(parsed)
-				
+		finalString = elim_nonurl(parsed)
+		'''		
 
-			return render_template('display_link.html', link=finalString)
+
+		return render_template('display_link.html', link=finalString)
+	
 	else:
 		
 		return render_template('pic_submit.html', error = "ERROR: No File, or an unsecure file, was submitted.")
